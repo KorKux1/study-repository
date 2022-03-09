@@ -1,0 +1,22 @@
+scalar DateTime
+
+type Query{
+  avos: [Avocado!]!
+  avo(id: ID!): Avocado
+}
+
+input CreateAvoInput {
+  name: String!
+  price: Float!
+  image: String!
+  description: String
+  shape: String
+  hardiness: String
+  taste: String
+}
+
+type Mutation {
+  createAvo(data: CreateAvoInput): Avocado!
+}
+
+

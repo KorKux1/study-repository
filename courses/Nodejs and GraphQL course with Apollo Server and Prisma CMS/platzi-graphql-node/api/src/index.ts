@@ -1,17 +1,20 @@
 import { ApolloServer } from 'apollo-server';
+import fs from 'fs';
+import path from 'path';
 
-// 1 - Query
-const typeDefs = `
-  type Query {
-    info: String!
-  }
-`;
+const modules = fs.readdirSync(path.join(__dirname, 'modules'))
+
+const typeDefs = 
+
+modules.map(module => fs.readFileSync(path.join(__dirname, 'modules', module, "schema.graphql"), 'utf8')).join('\n')
+
+
 
 // 2 - Resolvers
 const resolvers = {
-  Query: {
-    info: () => 'This is the API of Platzi Node Graphql',
-  }
+  avos: () => {return "Hello World"},
+  avo: ({id}) => {return "Hello World"},
+  createAvo: ( {data}) => {return "Hello World"}
 };
 
 // 3 -  Init Server
