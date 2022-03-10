@@ -1,9 +1,8 @@
 scalar DateTime
 
 type Query{
-  test: String
-  # avos: [Avocado!]!
-  # avo(id: ID!): Avocado
+  avos: [Avocado!]!
+  avo(id: ID!): Avocado
 }
 
 input CreateAvoInput {
@@ -16,8 +15,8 @@ input CreateAvoInput {
   taste: String
 }
 
-# type Mutation {
-#   createAvo(data: CreateAvoInput): Avocado!
-# }
+type Mutation {
+  createAvo(data: CreateAvoInput): Avocado!
+}
 
 
