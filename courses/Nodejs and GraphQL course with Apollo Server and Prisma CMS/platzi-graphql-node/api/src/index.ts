@@ -4,17 +4,23 @@ import path from 'path';
 
 const modules = fs.readdirSync(path.join(__dirname, 'modules'))
 
-const typeDefs = 
+const schemaFiles = modules.map(module => fs.readFileSync(path.join(__dirname, 'modules', module, "schema.graphql"), 'utf8')).join('\n')
 
-modules.map(module => fs.readFileSync(path.join(__dirname, 'modules', module, "schema.graphql"), 'utf8')).join('\n')
+const typeDefs = [fs.readFileSync(path.join(__dirname, "schema.graphql"), 'utf8')]
+
+typeDefs.push(schemaFiles)
+
 
 
 
 // 2 - Resolvers
 const resolvers = {
-  avos: () => {return "Hello World"},
-  avo: ({id}) => {return "Hello World"},
-  createAvo: ( {data}) => {return "Hello World"}
+  Query : {
+    test: () => { return "Hello World" }
+  },
+  // avos: () => {return "Hello World"},
+  // avo: ({ id }: {id:any}) => {return "Hello World"},
+  // createAvo: () => {return "Hello World"}
 };
 
 // 3 -  Init Server
